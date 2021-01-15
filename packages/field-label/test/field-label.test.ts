@@ -64,6 +64,15 @@ describe('FieldLabel', () => {
 
         await expect(el).to.be.accessible();
     });
+    it('loads with invalid "for"', async () => {
+        const el = await fixture<FieldLabel>(
+            html`
+                <sp-field-label for="not_exist">Input label</sp-field-label>
+            `
+        );
+        await elementUpdated(el);
+        await expect(el).to.be.accessible();
+    });
     it('associates itself to an element whose "id" matches its "for" attribute', async () => {
         const test = await fixture<HTMLDivElement>(
             html`
